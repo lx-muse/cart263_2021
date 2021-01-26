@@ -6,9 +6,12 @@ MC Lariviere
 
 This is an activity in cart 263 presented to Pippin Barr & Dana
 It was previously explored here: https://github.com/lx-muse/cart253/tree/master/exercice3
-Some elements stayed, yet the whole program was rewritten for 2021
+Some elements stayed, yet the whole program was rewritten & revised in 2021
 I was a little rusty with p5 librairy and made lots of typo
 Has it been 16 months already ?!
+
+Animal images from:
+https://creativenerds.co.uk/freebies/80-free-wildlife-icons-the-best-ever-animal-icon-set/
 
 ******************/
 "use strict";
@@ -29,10 +32,10 @@ let sausageDog
 
 function preload() {
   for(let i = 0; i < NUM_ANIMAL_IMAGES; i++){
-    let animalImage = loadImage(`assets/images/animal${i}.png`);
+    let animalImage = loadImage(`assets/images/animals-${i}.png`);
     animalImages.push(animalImage);
   }
-  sausageDogImage = loadImage(`assets/images/sausage-dog.png`);
+  sausageDogImage = loadImage(`assets/images/animals-target.png`);
 }
 
 
