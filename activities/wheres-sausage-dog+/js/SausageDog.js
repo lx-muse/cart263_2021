@@ -17,11 +17,9 @@ class SausageDog extends Animal {
     }
   }
 
+//if the sausage dog isn<t found and we detect the overlap from Animal
   mousePressed(){
-    if(mouseX > this.x - this.image.width / 2 &&
-    mouseX < this.x + this.image.width / 2 &&
-    mouseY > this.y - this.image.height / 2 &&
-    mouseY > this.y + this.image.height / 2) {
+    if(!this.found && this.overlap(mouseX, mouseY)) {
     this.found = true;
     }
   }
