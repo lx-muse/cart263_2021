@@ -24,7 +24,9 @@ let animalImages = [];
 let animals = [];
 //variable for our target-image
 let sausageDogImage = undefined;
-let sausageDog
+let sausageDog;
+
+let slider;
 
 // preload()
 // for loop to load and push animal images in the array
@@ -44,7 +46,6 @@ function preload() {
 // for 100 random images at random position
 
 function setup() {
-
   createCanvas(windowWidth, windowHeight);
   for(let i = 0; i < NUM_ANIMALS; i++) {
     //from the animal constructor
@@ -59,7 +60,12 @@ function setup() {
   let x = random(0, width);
   let y = random(0, height);
   sausageDog = new SausageDog(x, y, sausageDogImage);
-  console.log(sausageDog);
+
+  //setup for difficulty slider (min, max, value, steps)
+  let randomVal = random(0, 255);
+  slider = createSlider(0, 255, randomVal, 40 );
+  slider.position(100, 75);
+  slider.style('width', '180px');
 
 }
 
@@ -68,7 +74,8 @@ function setup() {
 // will display the animals
 
 function draw() {
-  background(0, 125, 255);
+  let val = slider.value();
+  background(val, 125, 255);
   //from the array of animals, .length caculates dynamicaly
   for(let i = 0; i < animals.length; i++) {
     //update method from the animal object
