@@ -46,7 +46,8 @@ function preload() {
 // for 100 random images at random position
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  //fixed windowHeight - height of html title
+  createCanvas(windowWidth, windowHeight - 120);
   for(let i = 0; i < NUM_ANIMALS; i++) {
     //from the animal constructor
     let x = random(0, width);
