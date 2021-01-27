@@ -22,7 +22,7 @@ const NUM_ANIMALS = 100;
 //I understand this layer now
 let animalImages = [];
 let animals = [];
-
+//variable for our target-image
 let sausageDogImage = undefined;
 let sausageDog
 

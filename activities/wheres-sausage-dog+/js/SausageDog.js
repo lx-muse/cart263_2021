@@ -11,7 +11,7 @@ class SausageDog extends Animal {
   update(){
     //still does the update from animals
     super.update();
-
+    //somehow tracks the end of the game too? Theres something to explore here
     if (this.found) {
       this.angle += this.rotationSpeed;
     }
