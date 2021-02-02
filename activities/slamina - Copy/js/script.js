@@ -142,15 +142,6 @@ function draw() {
     text(newsText + "\n" + news, width / 3, height - 100);
     text(fakeNewsText + "\n" + fakeNews, width / 2, height - 100);
 
-  if (currentAnswer === currentAnimal) {
-    console.log("match");
-    fakeNews = fakeNews += 1 ;
-    fill(0, 255, 0);
-  }
-  else {
-    news = news += 1 ;
-    fill(255, 0, 0);
-  }
 
 }
 
@@ -160,8 +151,10 @@ function mousePressed() {
 
   //  let reverseAnimal = reverseString(currentAnimal);
   responsiveVoice.speak(currentAnimal, "US English Male", {
-    volume: 1
+    volume: 1,
+    onend: checkMatch
   });
+
 
 }
 
@@ -169,6 +162,22 @@ function guessAnimal(animal) {
   currentAnswer = animal.toUpperCase();
   console.log(currentAnswer);
 }
+
+function checkMatch(){
+
+    if (currentAnswer === currentAnimal) {
+      console.log("match");
+      fakeNews = fakeNews += 1 ;
+      fill(0, 255, 0);
+    }
+    else {
+      news = news += 1 ;
+      fill(255, 0, 0);
+    }
+
+}
+
+
 //
 // /**
 // Reverses the provided string
