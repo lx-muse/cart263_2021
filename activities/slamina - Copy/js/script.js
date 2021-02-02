@@ -77,20 +77,23 @@ const animals = [
 
 // why backticks for empty strings?
 let currentAnimal = ``;
-// let currentAnswer = ``;
+let currentAnswer = ``;
 
 let img;
 
+//to keep track of match
+let fakeNews = 0;
+let fakeNewsText = "passed:";
 
-// preload()
-//
+let news = 0;
+let newsText = "caught:";
+
+
 // Description of preload
 function preload() {
 
 }
 
-// setup()
-//
 // Description of setup
 
 function setup() {
@@ -98,24 +101,25 @@ function setup() {
   img = loadImage("assets/images/newspaper.png");
 }
 
-// draw()
-//
+
 // Description of draw()
 
 function draw() {
+  //display background
   background(255);
   tint(255, 25);
   image(img, 0, 0, img.width / 2, img.height / 2);
-  // display instruction
+
+  // display instruction on mouse
   fill(0);
   textSize(12);
   text("click on page", mouseX, mouseY);
-  //display headlines
+  //displays fake headlines
   push();
   fill(255, 0, 0);
   stroke(50);
   textSize(20);
-  text(currentAnimal, 15, height / 2 - 20, 200, 200);
+  text(currentAnimal, 15, height / 2 - 50, 200, 200);
   pop();
 
   if (annyang) {
@@ -125,17 +129,28 @@ function draw() {
     annyang.addCommands(commands);
     annyang.start();
     console.log('annyang');
-    // text(currentAnswer, 15, height / 2 - 20, 200, 200);
+
+    //display what is understood by annyang
+    push();
+    text(currentAnswer, width / 3, height / 2 - 20, 200, 200);
+    fill(0, 0, 255);
     textSize(32);
     textStyle(BOLD);
-    textAlign(CENTER,CENTER);
+    pop();
   }
-  // if (currentAnswer === currentAnimal) {
-  //   fill(0, 255, 0);
-  // }
-  // else {
-  //   fill(255, 0, 0);
-  // }
+    //filter counter
+    text(newsText + "\n" + news, width / 3, height - 100);
+    text(fakeNewsText + "\n" + fakeNews, width / 2, height - 100);
+
+  if (currentAnswer === currentAnimal) {
+    console.log("match");
+    fakeNews = fakeNews += 1 ;
+    fill(0, 255, 0);
+  }
+  else {
+    news = news += 1 ;
+    fill(255, 0, 0);
+  }
 
 }
 
@@ -151,7 +166,7 @@ function mousePressed() {
 }
 
 function guessAnimal(animal) {
-  currentAnswer = animal.toLowerCase();
+  currentAnswer = animal.toUpperCase();
   console.log(currentAnswer);
 }
 //
