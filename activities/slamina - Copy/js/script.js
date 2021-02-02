@@ -9,7 +9,7 @@ github.com/dariusk/corpora/blob/master/data/words/crash_blossoms.json
 ******************/
 
 
-const animals =  [
+const animals = [
   "12 ON THEIR WAY TO CRUISE AMONG DEAD IN PLANE CRASH",
   "2 SISTERS REUNITED AFTER 18 YEARS AT CHECKOUT COUNTER",
   "3 MISSING AFTER WAVES HIT MAINE LOCATED",
@@ -72,22 +72,22 @@ const animals =  [
   "VOODOO DOGS FLYING DOCTOR'S PLANES",
   "WHY SOME WOMEN RISK HAVING CHILDREN WITH BIRTH DEFECTS",
   "WOMAN BURNED AS BABY TRACKS DOWN NURSE WHO CARED FOR HER"
-    ];
+];
 
 
 // why backticks for empty strings?
-    let currentAnimal = ``;
-    // let currentAnswer = ``;
+let currentAnimal = ``;
+// let currentAnswer = ``;
 
-    let img;
+let img;
 
 
-    // preload()
-    //
-    // Description of preload
-    function preload() {
+// preload()
+//
+// Description of preload
+function preload() {
 
-    }
+}
 
 // setup()
 //
@@ -96,18 +96,6 @@ const animals =  [
 function setup() {
   createCanvas(750, 520);
   img = loadImage("assets/images/newspaper.png");
-
-  // if (annyang) {
-  //   let commands = {
-  //     'I think it is *animal': guessAnimal
-  //   };
-  //   annyang.addCommands(commands);
-  //   annyang.start();
-  //   console.log('annyang');
-  //   textSize(32);
-  //   textStyle(BOLD);
-  //   textAlign(CENTER,CENTER);
-  // }
 }
 
 // draw()
@@ -117,18 +105,31 @@ function setup() {
 function draw() {
   background(255);
   tint(255, 25);
-  image(img, 0, 0, img.width / 2, img.height /2);
+  image(img, 0, 0, img.width / 2, img.height / 2);
   // display instruction
   fill(0);
   textSize(12);
-  text("click on page",mouseX, mouseY, 200, 200);
-
+  text("click on page", mouseX, mouseY);
+  //display headlines
   push();
   fill(255, 0, 0);
   stroke(50);
   textSize(20);
-  text(currentAnimal, 15, height / 2 -20, 200, 200);
+  text(currentAnimal, 15, height / 2 - 20, 200, 200);
   pop();
+
+  if (annyang) {
+    let commands = {
+      '*animal': guessAnimal
+    };
+    annyang.addCommands(commands);
+    annyang.start();
+    console.log('annyang');
+    // text(currentAnswer, 15, height / 2 - 20, 200, 200);
+    textSize(32);
+    textStyle(BOLD);
+    textAlign(CENTER,CENTER);
+  }
   // if (currentAnswer === currentAnimal) {
   //   fill(0, 255, 0);
   // }
@@ -143,15 +144,16 @@ function mousePressed() {
   currentAnimal = random(animals);
 
   //  let reverseAnimal = reverseString(currentAnimal);
-   responsiveVoice.speak(currentAnimal,"US English Male", {
-     volume: 0.5});
+  responsiveVoice.speak(currentAnimal, "US English Male", {
+    volume: 1
+  });
 
 }
-//
-// function guessAnimal(animal) {
-//   currentAnswer = animal.toLowerCase();
-//   console.log(currentAnswer);
-// }
+
+function guessAnimal(animal) {
+  currentAnswer = animal.toLowerCase();
+  console.log(currentAnswer);
+}
 //
 // /**
 // Reverses the provided string
