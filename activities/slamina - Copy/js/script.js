@@ -87,7 +87,6 @@ const animals =  [
     // Description of preload
     function preload() {
 
-
     }
 
 // setup()
@@ -95,8 +94,8 @@ const animals =  [
 // Description of setup
 
 function setup() {
-  createCanvas(500, 500);
-  img = loadImage('assets/newspaper.png');
+  createCanvas(750, 520);
+  img = loadImage("assets/images/newspaper.png");
 
   // if (annyang) {
   //   let commands = {
@@ -116,11 +115,20 @@ function setup() {
 // Description of draw()
 
 function draw() {
-  // background(0);
-  image(img, 0, 0);
-  text(currentAnimal, 50, height / 2);
-  fill(255, 0, 0);
+  background(255);
+  tint(255, 25);
+  image(img, 0, 0, img.width / 2, img.height /2);
+  // display instruction
+  fill(0);
+  textSize(12);
+  text("click on page",mouseX, mouseY, 200, 200);
 
+  push();
+  fill(255, 0, 0);
+  stroke(50);
+  textSize(20);
+  text(currentAnimal, 15, height / 2 -20, 200, 200);
+  pop();
   // if (currentAnswer === currentAnimal) {
   //   fill(0, 255, 0);
   // }
