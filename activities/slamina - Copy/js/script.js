@@ -4,6 +4,10 @@ Can you repeat that headline?
 MC Lariviere
 
 This is an activity in cart 263 presented to Pippin Barr & Dana\
+
+It could be better if my function checkMatch() accuratly passed them,
+saw it worked with US Male voice. I think it's funnier to read what annyang thinks it said.
+
 headlines
 github.com/dariusk/corpora/blob/master/data/words/crash_blossoms.json
 ******************/
@@ -128,7 +132,6 @@ function draw() {
     };
     annyang.addCommands(commands);
     annyang.start();
-    console.log('annyang');
 
     //display what is understood by annyang
     push();
@@ -166,10 +169,10 @@ function guessAnimal(animal) {
 function checkMatch(){
 
     if (currentAnswer === currentAnimal) {
-      console.log("match");
       fakeNews = fakeNews += 1 ;
       fill(0, 255, 0);
     }
+
     else {
       news = news += 1 ;
       fill(255, 0, 0);
