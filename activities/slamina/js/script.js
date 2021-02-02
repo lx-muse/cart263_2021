@@ -1,10 +1,10 @@
 /*****************
 
-Title of Project
-Author Name
+Slamina
+MC Lariviere
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+This is an activity in cart 263 presented to Pippin Barr & Dana\
+
 
 ******************/
 
@@ -22,6 +22,20 @@ function preload() {
 // Description of setup
 
 function setup() {
+  createCanvas(500, 500);
+
+
+  if (annyang) {
+    let commands = {
+      'hello': function() {
+        alert(`Howdy!`);
+      }
+    };
+    annyang.addCommands(commands);
+    annyang.start();
+    console.log('annyang');
+  }
+
 
 }
 
@@ -31,5 +45,11 @@ function setup() {
 // Description of draw()
 
 function draw() {
+  background(0);
+}
+
+
+function mousePressed() {
+  // responsiveVoice.speak("hello world");
 
 }
