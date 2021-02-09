@@ -31,7 +31,7 @@ let geographyData = undefined;
 
 let pictureData = undefined;
 
-// returns pictureData with handleTheResponse() callback in JSON format - public
+//THIS LINK returns pictureData with handleTheResponse() callback in JSON format - public
 // const PICTURE_DATA_URL = `https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=handleTheResponse&format=json`;
 
 
@@ -72,14 +72,16 @@ function setup() {
   }
 
 // https://stackoverflow.com/questions/43703296/use-json-output-from-flickr-to-display-images-from-search
-  // setup pictures urls
+//   setup pictures urls
+
 // let pictureData = JSON.parse(pictureData); //x is the json returned from the url.
 //   var _s = pictureData.photos.photo;
 //   for (var z = 0; z < pictureData.photos.photo.length; z++) {
 //     var CurrentPhotoUrl = 'https://farm' + _s[z]['farm'] + '.staticflickr.com/' + _s[z]['server'] + '/' + _s[z]['id'] + '_' + _s[z]['secret'] + '_n.jpg'
 //     console.log(CurrentPhotoUrl);
-//
 //   }
+
+
 }
 
 function handleTheResponse(pictureData){
@@ -109,13 +111,8 @@ function generateSpyProfile() {
 
     //will select from geographical location
     // returns [object Object] or a number
-    // let location = random(geographyData.neighborhoods[???]);
+    let location = random(geographyData.neighborhoods);
 
-    let location = [];
-    let i;
-    for(i = 0; i < location.length; i++){
-       location = random(geographyData.neighborhoods[i]);
-    }
     console.log(location);
     spyProfile.dispatch = location.name;
 
@@ -154,4 +151,4 @@ function keyPressed(){
     console.log("clear");
   }
 }
-// remember sessionStorage 
+// remember sessionStorage
