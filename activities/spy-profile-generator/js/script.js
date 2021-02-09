@@ -39,12 +39,17 @@ function setup() {
 
   // load a profile if there is one
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
-  // copy across the properties
+  // check password, copy across the properties
   if(data) {
-    spyProfile.name = data.name;
-    spyProfile.alias = data.alias;
-    spyProfile.secretWeapon = data.secretWeapon;
-    spyProfile.password = data.password;
+    let password = prompt(`Password!`);
+    if(password === data.password){
+      spyProfile.name = data.name;
+      spyProfile.alias = data.alias;
+      spyProfile.secretWeapon = data.secretWeapon;
+      spyProfile.password = data.password;
+    }
+    // do something if they got password wrong here with another else
+
   }
   else {
     generateSpyProfile();
@@ -92,5 +97,5 @@ Password: ${spyProfile.password}`;
   fill(0);
   text(profile, 100, 100);
   pop();
-  
+
 }
