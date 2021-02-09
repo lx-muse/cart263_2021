@@ -25,8 +25,13 @@ let objectData = undefined;
 let tarotData = undefined;
 
 // adding a random flower picture (lets try)
+
 let pictureData = undefined;
-const PICTURE_DATA_URL = `http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ae444a7261470da2625374b4c8bf6092&tags=flower&per_page=3&format=json&nojsoncallback=1`;
+const PICTURE_DATA_URL = ``;
+
+
+// personal key brought cors error but a nice JSON file
+// http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ae444a7261470da2625374b4c8bf6092&tags=flower&per_page=3&format=json&nojsoncallback=1
 
 // loading JSON list in variables from constant url
 function preload() {
@@ -61,13 +66,13 @@ function setup() {
 
 // https://stackoverflow.com/questions/43703296/use-json-output-from-flickr-to-display-images-from-search
   // setup pictures urls
-let pictureData = JSON.parse(pictureData); //x is the json returned from the url.
-  var _s = pictureData.photos.photo;
-  for (var z = 0; z < pictureData.photos.photo.length; z++) {
-    var CurrentPhotoUrl = 'https://farm' + _s[z]['farm'] + '.staticflickr.com/' + _s[z]['server'] + '/' + _s[z]['id'] + '_' + _s[z]['secret'] + '_n.jpg'
-    console.log(CurrentPhotoUrl);
-
-  }
+// let pictureData = JSON.parse(pictureData); //x is the json returned from the url.
+//   var _s = pictureData.photos.photo;
+//   for (var z = 0; z < pictureData.photos.photo.length; z++) {
+//     var CurrentPhotoUrl = 'https://farm' + _s[z]['farm'] + '.staticflickr.com/' + _s[z]['server'] + '/' + _s[z]['id'] + '_' + _s[z]['secret'] + '_n.jpg'
+//     console.log(CurrentPhotoUrl);
+//
+//   }
 
   console.log("pictureData");
 }
