@@ -15,7 +15,7 @@ let spyProfile = {
   secretWeapon: `*redacted*`,
   dispatch: `*redacted*`,
   password: `*redacted*`,
-  icon : undefined,
+  icon: undefined,
 };
 
 const OBJECT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/materials/packaging.json`;
@@ -52,22 +52,21 @@ function preload() {
   tarotData = loadJSON(TAROT_DATA_URL);
   geographyData = loadJSON(GEOGRAPHY_DATA_URL);
 
-// fill an array with images
-    let possibleIcons = [
-      "assets/images/icon_01.svg",
-      "assets/images/icon_02.svg",
-      "assets/images/icon_03.svg",
-      "assets/images/icon_04.svg",
-      "assets/images/icon_05.svg",
-      "assets/images/icon_06.svg",
-      "assets/images/icon_07.svg",
-      "assets/images/icon_08.svg",
-    ]
-    console.log(possibleIcons);
-    let pos = floor(random(possibleIcons.length));
-    iconUrl = loadImage(possibleIcons[pos]);
-    console.log(iconUrl);
-
+  // fill an array with images
+  let possibleIcons = [
+    "assets/images/icon_01.svg",
+    "assets/images/icon_02.svg",
+    "assets/images/icon_03.svg",
+    "assets/images/icon_04.svg",
+    "assets/images/icon_05.svg",
+    "assets/images/icon_06.svg",
+    "assets/images/icon_07.svg",
+    "assets/images/icon_08.svg",
+  ]
+  console.log(possibleIcons);
+  let pos = floor(random(possibleIcons.lenght));
+  iconUrl = loadImage(possibleIcons[pos]);
+  console.log(iconUrl);
 }
 
 
@@ -89,27 +88,26 @@ function setup() {
       spyProfile.password = data.password;
       spyProfile.dispatch = data.dispatch;
       spyProfile.icon = data.icon;
-          loadImage(spyProfile.icon);
     }
     // do something if they got password wrong here with another else
   } else {
     generateSpyProfile();
   }
 
-// https://stackoverflow.com/questions/43703296/use-json-output-from-flickr-to-display-images-from-search
-//   setup pictures urls
+  // https://stackoverflow.com/questions/43703296/use-json-output-from-flickr-to-display-images-from-search
+  //   setup pictures urls
 
-// let pictureData = JSON.parse(pictureData); //x is the json returned from the url.
-//   var _s = pictureData.photos.photo;
-//   for (var z = 0; z < pictureData.photos.photo.length; z++) {
-//     var CurrentPhotoUrl = 'https://farm' + _s[z]['farm'] + '.staticflickr.com/' + _s[z]['server'] + '/' + _s[z]['id'] + '_' + _s[z]['secret'] + '_n.jpg'
-//     console.log(CurrentPhotoUrl);
-//   }
+  // let pictureData = JSON.parse(pictureData); //x is the json returned from the url.
+  //   var _s = pictureData.photos.photo;
+  //   for (var z = 0; z < pictureData.photos.photo.length; z++) {
+  //     var CurrentPhotoUrl = 'https://farm' + _s[z]['farm'] + '.staticflickr.com/' + _s[z]['server'] + '/' + _s[z]['id'] + '_' + _s[z]['secret'] + '_n.jpg'
+  //     console.log(CurrentPhotoUrl);
+  //   }
 
 
 }
 
-function handleTheResponse(pictureData){
+function handleTheResponse(pictureData) {
 
   console.log(pictureData);
 
@@ -134,14 +132,14 @@ function generateSpyProfile() {
   console.log(spyProfile);
 
 
-    //will select from geographical location
-    // returns [object Object] or a number
-    let location = random(geographyData.neighborhoods);
+  //will select from geographical location
+  // returns [object Object] or a number
+  let location = random(geographyData.neighborhoods);
 
-    console.log(location);
-    spyProfile.dispatch = location.name;
+  console.log(location);
+  spyProfile.dispatch = location.name;
 
-    spyProfile.icon = iconUrl;
+  spyProfile.icon = iconUrl;
 
   // save the profile in localStorage. remember to strignify to turn object into strings
   // using a specific name in storage
@@ -173,8 +171,8 @@ Dispatch: ${spyProfile.dispatch}
 
 }
 // reset spyProfile
-function keyPressed(){
-  if(key === "c"){
+function keyPressed() {
+  if (key === "c") {
     localStorage.removeItem(`spy-profile-data`);
     console.log("clear");
   }
