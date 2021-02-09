@@ -147,3 +147,11 @@ Dispatch: ${spyProfile.dispatch}
   pop();
 
 }
+// reset spyProfile
+function keyPressed(){
+  if(key === "c"){
+    localStorage.removeItem(`spy-profile-data`);
+    console.log("clear");
+  }
+}
+// remember sessionStorage 
