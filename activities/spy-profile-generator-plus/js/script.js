@@ -13,21 +13,26 @@ let spyProfile = {
   name: `*redacted*`,
   alias: `*redacted*`,
   secretWeapon: `*redacted*`,
+  dispatch: `*redacted*`,
   password: `*redacted*`,
 };
 
 const OBJECT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/materials/packaging.json`;
 const TAROT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`;
 const INSTRUMENT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`;
+const GEOGRAPHY_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/geography/sf_neighborhoods.json`;
 
 let instrumentData = undefined;
 let objectData = undefined;
 let tarotData = undefined;
+let geographyData = undefined;
 
 // adding a random flower picture (lets try)
 
 let pictureData = undefined;
-const PICTURE_DATA_URL = ``;
+
+// returns pictureData with handleTheResponse() callback in JSON format - public
+// const PICTURE_DATA_URL = `https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=handleTheResponse&format=json`;
 
 
 // personal key brought cors error but a nice JSON file
@@ -38,7 +43,8 @@ function preload() {
   instrumentData = loadJSON(INSTRUMENT_DATA_URL);
   objectData = loadJSON(OBJECT_DATA_URL);
   tarotData = loadJSON(TAROT_DATA_URL);
-  pictureData = loadJSON(PICTURE_DATA_URL);
+  geographyData = loadJSON(GEOGRAPHY_DATA_URL);
+
 }
 
 
@@ -58,6 +64,7 @@ function setup() {
       spyProfile.alias = data.alias;
       spyProfile.secretWeapon = data.secretWeapon;
       spyProfile.password = data.password;
+      spyProfile.dispatch = data.dispatch;
     }
     // do something if they got password wrong here with another else
   } else {
@@ -73,8 +80,12 @@ function setup() {
 //     console.log(CurrentPhotoUrl);
 //
 //   }
+}
 
-  console.log("pictureData");
+function handleTheResponse(pictureData){
+
+  console.log(pictureData);
+
 }
 
 
@@ -84,6 +95,7 @@ function generateSpyProfile() {
 
   // gets a random from instrument second property
   let instrument = random(instrumentData.instruments);
+
   // template string with a variable to add something to the text
   spyProfile.alias = `The ${instrument}`;
 
@@ -93,10 +105,23 @@ function generateSpyProfile() {
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
   console.log(spyProfile);
+
+
+    //will select from geographical location
+    // returns [object Object] or a number
+    // let location = random(geographyData.neighborhoods[???]);
+
+    let location = [];
+    let i;
+    for(i = 0; i < location.length; i++){
+       location = random(geographyData.neighborhoods[i]);
+    }
+    console.log(location);
+    spyProfile.dispatch = location.name;
+
   // save the profile in localStorage. remember to strignify to turn object into strings
   // using a specific name in storage
   localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
-
 }
 
 // Description of draw()
@@ -109,14 +134,16 @@ function draw() {
 Name: ${spyProfile.name}
 Alias: ${spyProfile.alias}
 Secret Weapon: ${spyProfile.secretWeapon}
-Password: ${spyProfile.password}`;
+Password: ${spyProfile.password}
+Dispatch: ${spyProfile.dispatch}
+`;
 
   push();
   textFont(`Courier`);
   textSize(24);
   textAlign(LEFT, TOP);
   fill(0);
-  text(profile, 100, 100);
+  text(profile, 50, 100);
   pop();
 
 }
