@@ -12,15 +12,21 @@ let spyProfile = {
   alias: `*redacted*`,
   secretWeapon: `*redacted*`,
   password: `*redacted*`
-
 };
 
+const OBJECT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/materials/packaging.json`;
+const TAROT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`;
+const INSTRUMENT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`;
 
+let instrumentData = undefined;
+let objectData = undefined;
+let tarotData = undefined;
 
-// Description of preload
-
+// loading JSON list in variables from constant url
 function preload() {
-
+  instrumentData = loadJSON(INSTRUMENT_DATA_URL);
+  objectData = loadJSON(OBJECT_DATA_URL);
+  tarotData = loadJSON(TAROT_DATA_URL);
 
 }
 
@@ -31,10 +37,26 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  spyProfile.name = prompt(`Identification!`);
+  generateSpyProfile();
+
 }
 
 
+// generate a profile once
+function generateSpyProfile(){
+    spyProfile.name = prompt(`Identification!`);
+
+    // gets a random from instrument second property
+    let instrument = random(instrumentData.instruments);
+    // template string with a variable to add something to the text
+    spyProfile.alias = `The ${instrument}`;
+
+    spyProfile.secretWeapon = random(objectData.packaging);
+
+    // will select from all arrays of cards
+    let card = random(tarotData.tarot_interpretations);
+    spyProfile.password = random(card.keywords);
+}
 
 // Description of draw()
 
