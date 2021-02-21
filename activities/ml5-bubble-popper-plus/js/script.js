@@ -10,6 +10,9 @@ Uses:
 ml5.js Handpose:
 https://learn.ml5js.org/#/reference/handpose
 
+sounds from
+https://mixkit.co/free-sound-effects/pop/
+
 */
 
 "use strict";
@@ -44,6 +47,8 @@ let pin = {
 let score = 0;
 let scoreText = "score 5!";
 
+// sfx
+let pop;
 
 /**
 Starts the webcam and the Handpose, creates a bubble object
@@ -77,6 +82,11 @@ function setup() {
     vx: 0,
     vy: -2
   }
+
+  // prepare for sfx
+  soundFormats('mp3', 'ogg');
+  pop = loadSound("assets/sounds/pop.mp3");
+  pop.stop();
 }
 
 /**
@@ -112,8 +122,8 @@ function running() {
   // const flippedVideo = ml5.flipImage(video);
   // image(flippedVideo, 0, 0, width, height);
 
-  // Use this line to just see a black background. More theatrical!
-  background(200);
+  // Use this line to just see a navy background. More theatrical!
+  background(0, 0, 102);
 
   // shows the current score of the game
   text(scoreText + "\n" + score, width / 2, height / 4);
@@ -130,6 +140,7 @@ function running() {
     if (d < bubble.size / 2) {
       // Pop!
       score++;
+      pop.play();
       resetBubble();
     }
     // Display the current position of the pin
