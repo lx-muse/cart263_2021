@@ -40,6 +40,10 @@ let pin = {
   }
 };
 
+//to keep track score
+let score = 0;
+let scoreText = "score 5!";
+
 
 /**
 Starts the webcam and the Handpose, creates a bubble object
@@ -109,7 +113,12 @@ function running() {
   // image(flippedVideo, 0, 0, width, height);
 
   // Use this line to just see a black background. More theatrical!
-  background(0);
+  background(200);
+
+  // shows the current score of the game
+  text(scoreText + "\n" + score, width / 2, height / 4);
+  fill(0, 255, 0);
+  textSize(32);
 
   // Check if there currently predictions to display
   if (predictions.length > 0) {
@@ -120,6 +129,7 @@ function running() {
     let d = dist(pin.tip.x, pin.tip.y, bubble.x, bubble.y);
     if (d < bubble.size / 2) {
       // Pop!
+      score++;
       resetBubble();
     }
     // Display the current position of the pin
@@ -131,6 +141,7 @@ function running() {
   moveBubble();
   checkOutOfBounds();
   displayBubble();
+  checkScore();
 }
 
 /**
@@ -197,4 +208,14 @@ function displayPin() {
   noStroke();
   ellipse(pin.head.x, pin.head.y, pin.head.size);
   pop();
+}
+
+// adds ends screen
+function checkScore(){
+  if(score === 5){
+    background(204,136,0);
+    fill(128, 21, 0);
+    textSize(32);
+    text("Good Job!", width / 2, height / 4);
+  }
 }
