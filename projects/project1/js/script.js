@@ -14,23 +14,21 @@ let poem = {
   icon: undefined,
 };
 
-
+let midsummerPoem;
 
 
 const OBJECT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/materials/packaging.json`;
 const TAROT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`;
 const INSTRUMENT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`;
-const GEOGRAPHY_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/geography/sf_neighborhoods.json`;
 
 
 let instrumentData = undefined;
 let objectData = undefined;
 let tarotData = undefined;
-let geographyData = undefined;
 
 
 let poemData = undefined;
-
+let midsummerPoemData = undefined;
 
 let pictureData = undefined;
 // picture workaround for now.
@@ -41,11 +39,12 @@ let iconUrl;
 
 // loading JSON list in variables from constant url
 function preload() {
-  poemData = loadJSON("assets/data/shakespeare_phrases.json")
+  poemData = loadJSON("assets/data/shakespeare_phrases.json");
+  midsummerPoemData = loadJSON("assets/data/midsummer.json");
+
   instrumentData = loadJSON(INSTRUMENT_DATA_URL);
   objectData = loadJSON(OBJECT_DATA_URL);
   tarotData = loadJSON(TAROT_DATA_URL);
-  geographyData = loadJSON(GEOGRAPHY_DATA_URL);
 
   // fill an array with images
   let possibleIcons = [
@@ -115,11 +114,10 @@ function generatePoem() {
 
 
   //will select from geographical location
-  // returns [object Object] or a number
-  let location = random(geographyData.neighborhoods);
+  let location = random(midsummerPoemData.verses);
+  poem.dispatch = location;
 
-  console.log(location);
-  poem.dispatch = location.name;
+
 
   poem.icon = iconUrl;
 
