@@ -6,29 +6,19 @@ MC Lariviere in cart 263
 A program that generates poems with JSON
 
 ******************/
+// Poem is an object of multiple texts
 let poem = {
   name: `*redacted*`,
-  alias: `*redacted*`,
   secretWeapon: `*redacted*`,
   dispatch: `*redacted*`,
   icon: undefined,
 };
-
+// A full poem inspired by the movie
 let midsummerPoem;
-
-
-const OBJECT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/materials/packaging.json`;
-const TAROT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`;
-const INSTRUMENT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`;
-
-
-let instrumentData = undefined;
-let objectData = undefined;
-let tarotData = undefined;
-
-
+// in Json format
 let poemData = undefined;
 let midsummerPoemData = undefined;
+
 
 let pictureData = undefined;
 // picture workaround for now.
@@ -41,10 +31,6 @@ let iconUrl;
 function preload() {
   poemData = loadJSON("assets/data/shakespeare_phrases.json");
   midsummerPoemData = loadJSON("assets/data/midsummer.json");
-
-  instrumentData = loadJSON(INSTRUMENT_DATA_URL);
-  objectData = loadJSON(OBJECT_DATA_URL);
-  tarotData = loadJSON(TAROT_DATA_URL);
 
   // fill an array with images
   let possibleIcons = [
@@ -65,28 +51,28 @@ function preload() {
 
 
 
-// Description of setup
+// Setup Prepares the texts files for processing
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  generatePoem();
+  addVerse();
 
-  // load a data if there is data
+
+
+  // load a local data if there is data
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
   // // check password, copy across the properties
   // if (data) {
   //   let password = prompt(`Password!`);
   //   if (password === data.password) {
   //     poem.name = data.name;
-  //     poem.alias = data.alias;
   //     poem.secretWeapon = data.secretWeapon;
   //     poem.password = data.password;
   //     poem.dispatch = data.dispatch;
   //     poem.icon = data.icon;
   //   }
     // do something if they got password wrong here with another else
-
-  generatePoem();
-  addVerse();
 
 }
 
@@ -98,11 +84,10 @@ function setup() {
 // generate a poem once
 function generatePoem() {
 
-  // gets a random from instrument second property
-  let instrument = random(instrumentData.instruments);
-  // template string with a variable to add something to the text
-  poem.alias = `The ${instrument}`;
-
+  // // gets a random from instrument second property
+  // let instrument = random(instrumentData.instruments);
+  // // template string with a variable to add something to the text
+  // poem.alias = `The ${instrument}`;
 
   poem.secretWeapon = random(poemData.phrases);
 
@@ -117,14 +102,13 @@ function generatePoem() {
   let location = random(midsummerPoemData.verses);
   poem.dispatch = location;
 
-
-
   poem.icon = iconUrl;
-
   // save the profile in localStorage. remember to strignify to turn object into strings
   // using a specific name in storage
   localStorage.setItem(`spy-profile-data`, JSON.stringify(poem));
 }
+
+
 
 // Description of draw()
 
@@ -134,10 +118,9 @@ function draw() {
 
   // template string allows to insert variables values
   let profile = `
-Name: ${poem.name}
-Alias: ${poem.alias}
-Secret Weapon: ${poem.secretWeapon}
-Dispatch: ${poem.dispatch}
+User quote: ${poem.name}
+${poem.secretWeapon}
+${poem.dispatch}
 `;
 
   push();
@@ -150,6 +133,8 @@ Dispatch: ${poem.dispatch}
 
 }
 
+
+// prompt a window and ask the user for its quote
 function addVerse(){
   poem.name = prompt(`You may contribute a verse!`);
 }
