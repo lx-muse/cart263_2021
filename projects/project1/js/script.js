@@ -6,7 +6,7 @@ MC Lariviere in cart 263
 A program that generates poems with JSON
 
 ******************/
-let spyProfile = {
+let poem = {
   name: `*redacted*`,
   alias: `*redacted*`,
   secretWeapon: `*redacted*`,
@@ -23,17 +23,16 @@ const INSTRUMENT_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/m
 const GEOGRAPHY_DATA_URL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/geography/sf_neighborhoods.json`;
 
 
-
-
 let instrumentData = undefined;
 let objectData = undefined;
 let tarotData = undefined;
 let geographyData = undefined;
 
 
+let poemData = undefined;
+
+
 let pictureData = undefined;
-
-
 // picture workaround for now.
 let possibleIcons;
 let iconUrl;
@@ -42,6 +41,7 @@ let iconUrl;
 
 // loading JSON list in variables from constant url
 function preload() {
+  poemData = loadJSON("assets/data/shakespeare_phrases.json")
   instrumentData = loadJSON(INSTRUMENT_DATA_URL);
   objectData = loadJSON(OBJECT_DATA_URL);
   tarotData = loadJSON(TAROT_DATA_URL);
@@ -71,51 +71,47 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // load a profile if there is one
+  // load a data if there is data
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
   // // check password, copy across the properties
   // if (data) {
   //   let password = prompt(`Password!`);
   //   if (password === data.password) {
-  //     spyProfile.name = data.name;
-  //     spyProfile.alias = data.alias;
-  //     spyProfile.secretWeapon = data.secretWeapon;
-  //     spyProfile.password = data.password;
-  //     spyProfile.dispatch = data.dispatch;
-  //     spyProfile.icon = data.icon;
+  //     poem.name = data.name;
+  //     poem.alias = data.alias;
+  //     poem.secretWeapon = data.secretWeapon;
+  //     poem.password = data.password;
+  //     poem.dispatch = data.dispatch;
+  //     poem.icon = data.icon;
   //   }
     // do something if they got password wrong here with another else
 
-  generateSpyProfile();
-
-
-
-}
-
-function handleTheResponse(pictureData) {
-
-  console.log(pictureData);
+  generatePoem();
+  addVerse();
 
 }
 
+// function handleTheResponse(pictureData) {
+//   console.log(pictureData);
+// }
 
-// generate a profile once
-function generateSpyProfile() {
-  spyProfile.name = prompt(`You may contribute a verse!`);
+
+// generate a poem once
+function generatePoem() {
 
   // gets a random from instrument second property
   let instrument = random(instrumentData.instruments);
-
   // template string with a variable to add something to the text
-  spyProfile.alias = `The ${instrument}`;
+  poem.alias = `The ${instrument}`;
 
-  spyProfile.secretWeapon = random(objectData.packaging);
+
+  poem.secretWeapon = random(poemData.phrases);
 
   // will select from all arrays of cards
   // let card = random(tarotData.tarot_interpretations);
-  // spyProfile.password = random(card.keywords);
+  // poem.password = random(card.keywords);
 
-  console.log(spyProfile);
+  console.log(poem);
 
 
   //will select from geographical location
@@ -123,13 +119,13 @@ function generateSpyProfile() {
   let location = random(geographyData.neighborhoods);
 
   console.log(location);
-  spyProfile.dispatch = location.name;
+  poem.dispatch = location.name;
 
-  spyProfile.icon = iconUrl;
+  poem.icon = iconUrl;
 
   // save the profile in localStorage. remember to strignify to turn object into strings
   // using a specific name in storage
-  localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
+  localStorage.setItem(`spy-profile-data`, JSON.stringify(poem));
 }
 
 // Description of draw()
@@ -139,15 +135,15 @@ function draw() {
   image(iconUrl, 25, 100);
 
   // template string allows to insert variables values
-  let profile = `*PROFILE*
-Name: ${spyProfile.name}
-Alias: ${spyProfile.alias}
-Secret Weapon: ${spyProfile.secretWeapon}
-Dispatch: ${spyProfile.dispatch}
+  let profile = `
+Name: ${poem.name}
+Alias: ${poem.alias}
+Secret Weapon: ${poem.secretWeapon}
+Dispatch: ${poem.dispatch}
 `;
 
   push();
-  textFont(`Courier`);
+  textFont(`cursive`);
   textSize(24);
   textAlign(LEFT, TOP);
   fill(0);
@@ -155,7 +151,12 @@ Dispatch: ${spyProfile.dispatch}
   pop();
 
 }
-// reset spyProfile
+
+function addVerse(){
+  poem.name = prompt(`You may contribute a verse!`);
+}
+
+// reset poem
 function keyPressed() {
   if (key === "c") {
     localStorage.removeItem(`spy-profile-data`);
