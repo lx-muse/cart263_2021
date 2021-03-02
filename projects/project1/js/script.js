@@ -8,14 +8,14 @@ A program that generates poems with JSON
 ******************/
 // Poem is an object of multiple texts
 let poem = {
-  name: `*redacted*`,
-  secretWeapon: `*redacted*`,
-  dispatch: `*redacted*`,
+  userVerse: `*redacted*`,
+  quotes: `*redacted*`,
+  puckEnding: `*redacted*`,
   icon: undefined,
 };
 // A full poem inspired by the movie
 let midsummerPoem;
-// in Json format
+// in Json format, loading Shakesperian quotes and Midsummer Nights Dream
 let poemData = undefined;
 let midsummerPoemData = undefined;
 
@@ -57,7 +57,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   generatePoem();
   addVerse();
-
+  console.log(poem);
 
 
   // load a local data if there is data
@@ -72,35 +72,19 @@ function setup() {
   //     poem.dispatch = data.dispatch;
   //     poem.icon = data.icon;
   //   }
-    // do something if they got password wrong here with another else
+  // do something if they got password wrong here with another else
 
 }
 
-// function handleTheResponse(pictureData) {
-//   console.log(pictureData);
-// }
 
-
-// generate a poem once
+// generates a poem once
 function generatePoem() {
 
-  // // gets a random from instrument second property
-  // let instrument = random(instrumentData.instruments);
-  // // template string with a variable to add something to the text
-  // poem.alias = `The ${instrument}`;
+  poem.quotes = random(poemData.phrases);
 
-  poem.secretWeapon = random(poemData.phrases);
-
-  // will select from all arrays of cards
-  // let card = random(tarotData.tarot_interpretations);
-  // poem.password = random(card.keywords);
-
-  console.log(poem);
-
-
-  //will select from geographical location
-  let location = random(midsummerPoemData.verses);
-  poem.dispatch = location;
+  //will select a verse from the midsummer poem
+  let randomPuckEnding = random(midsummerPoemData.verses);
+  poem.puckEnding = randomPuckEnding;
 
   poem.icon = iconUrl;
   // save the profile in localStorage. remember to strignify to turn object into strings
@@ -109,6 +93,10 @@ function generatePoem() {
 }
 
 
+// prompt a window and ask the user for its quote
+function addVerse() {
+  poem.userVerse = prompt(`You may contribute a verse!`);
+}
 
 // Description of draw()
 
@@ -117,27 +105,23 @@ function draw() {
   image(iconUrl, 25, 100);
 
   // template string allows to insert variables values
-  let profile = `
-User quote: ${poem.name}
-${poem.secretWeapon}
-${poem.dispatch}
-`;
+  let mashupPoem = `
+  User quote: ${poem.userVerse}
+  ${poem.quotes}
+  ${poem.puckEnding}
+  `;
 
   push();
   textFont(`cursive`);
   textSize(24);
   textAlign(LEFT, TOP);
   fill(0);
-  text(profile, 50, 100);
+  text(mashupPoem, 50, 100);
   pop();
 
 }
 
 
-// prompt a window and ask the user for its quote
-function addVerse(){
-  poem.name = prompt(`You may contribute a verse!`);
-}
 
 // reset poem
 function keyPressed() {
