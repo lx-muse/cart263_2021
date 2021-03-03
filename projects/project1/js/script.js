@@ -5,12 +5,16 @@ MC Lariviere in cart 263
 
 A program that generates poems with JSON
 
+RiTa text processing librairie
+https://rednoise.org/rita/#examples
+
+
 ******************/
 // Poem is an object of multiple texts
 let poem = {
-  userVerse: `*redacted*`,
-  quotes: `*redacted*`,
-  puckEnding: `*redacted*`,
+  userVerse: ` `,
+  quotes: ` `,
+  puckEnding: ` `,
   icon: undefined,
 };
 // A full poem inspired by the movie
@@ -18,6 +22,10 @@ let midsummerPoem;
 // in Json format, loading Shakesperian quotes and Midsummer Nights Dream
 let poemData = undefined;
 let midsummerPoemData = undefined;
+
+// variables to addVerse
+let input, button, greetings;
+
 
 
 let pictureData = undefined;
@@ -54,25 +62,10 @@ function preload() {
 // Setup Prepares the texts files for processing
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(640, 480);
   generatePoem();
   addVerse();
   console.log(poem);
-
-
-  // load a local data if there is data
-  let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
-  // // check password, copy across the properties
-  // if (data) {
-  //   let password = prompt(`Password!`);
-  //   if (password === data.password) {
-  //     poem.name = data.name;
-  //     poem.secretWeapon = data.secretWeapon;
-  //     poem.password = data.password;
-  //     poem.dispatch = data.dispatch;
-  //     poem.icon = data.icon;
-  //   }
-  // do something if they got password wrong here with another else
 
 }
 
@@ -87,37 +80,65 @@ function generatePoem() {
   poem.puckEnding = randomPuckEnding;
 
   poem.icon = iconUrl;
-  // save the profile in localStorage. remember to strignify to turn object into strings
-  // using a specific name in storage
-  localStorage.setItem(`spy-profile-data`, JSON.stringify(poem));
+
 }
 
 
 // prompt a window and ask the user for its quote
 function addVerse() {
-  poem.userVerse = prompt(`You may contribute a verse!`);
+
+  input = createInput(`You may contribute a verse!`);
+  input.input(myInputEvent);
+  input.position(40, 440);
+  input.size(200);
+
+
+  button = createButton("join");
+  button.position(input.x + input.width, 440);
+  button.mousePressed(sendUserVerse);
+  // poem.userVerse = prompt(`You may contribute a verse!`);
 }
+
+function myInputEvent(){
+  console.log('you are typing: ', input.value());
+}
+
+function sendUserVerse(){
+
+  console.log(input.value());
+  poem.userVerse = input.value();
+}
+
 
 // Description of draw()
 
 function draw() {
-  background(255);
+  background(200);
   image(iconUrl, 25, 100);
 
   // template string allows to insert variables values
+  // join 3 sentences in a rita string
   let mashupPoem = `
-  User quote: ${poem.userVerse}
+  ${poem.userVerse}
   ${poem.quotes}
   ${poem.puckEnding}
   `;
 
+// seperate each words
+  let words = RiTa.tokenize(mashupPoem)
+  for (let i=0; i < words.length; i++) {
+      text(words[i], 50, 50 + i*20);
+  }
+
+// draw the words
   push();
   textFont(`cursive`);
   textSize(24);
   textAlign(LEFT, TOP);
   fill(0);
-  text(mashupPoem, 50, 100);
+  // text(mashupPoem, 50, 100);
   pop();
+
 
 }
 
