@@ -23,10 +23,12 @@ let midsummerPoem;
 let poemData = undefined;
 let midsummerPoemData = undefined;
 
+// variables to split strings
+let mashupPoem;
+let words = "";
+
 // variables to addVerse
 let input, button, greetings;
-
-
 
 let pictureData = undefined;
 // picture workaround for now.
@@ -65,8 +67,6 @@ function setup() {
   createCanvas(640, 480);
   generatePoem();
   addVerse();
-  console.log(poem);
-
 }
 
 
@@ -99,14 +99,17 @@ function addVerse() {
   // poem.userVerse = prompt(`You may contribute a verse!`);
 }
 
-function myInputEvent(){
+function myInputEvent() {
   console.log('you are typing: ', input.value());
 }
 
-function sendUserVerse(){
-
+function sendUserVerse() {
   console.log(input.value());
   poem.userVerse = input.value();
+
+  console.log(mashupPoem);
+  console.log(words);
+
 }
 
 
@@ -118,19 +121,21 @@ function draw() {
 
   // template string allows to insert variables values
   // join 3 sentences in a rita string
-  let mashupPoem = `
+  mashupPoem = `
   ${poem.userVerse}
   ${poem.quotes}
   ${poem.puckEnding}
   `;
 
-// seperate each words
-  let words = RiTa.tokenize(mashupPoem)
-  for (let i=0; i < words.length; i++) {
-      text(words[i], 50, 50 + i*20);
+  // seperate each words of the mashupPoem array
+  words = RiTa.tokenize(mashupPoem)
+  for (let i = 0; i < words.length; i++) {
+    text(words[i], 50, 50 + i * 20);
   }
 
-// draw the words
+
+
+  // draw the words
   push();
   textFont(`cursive`);
   textSize(24);
@@ -142,7 +147,9 @@ function draw() {
 
 }
 
+function drawText() {
 
+}
 
 // reset poem
 function keyPressed() {
