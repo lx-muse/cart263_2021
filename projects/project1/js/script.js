@@ -27,6 +27,8 @@ let midsummerPoemData = undefined;
 let mashupPoem;
 let words = "";
 let randomWords = "";
+let dancingWords = [];
+let spannedWords ;
 
 // variables to addVerse
 let input, button, greetings;
@@ -37,6 +39,8 @@ let pictureData = undefined;
 let possibleIcons;
 let iconUrl;
 
+// variables for animation
+let t = 0;
 
 
 // loading JSON list in variables from constant local files
@@ -111,7 +115,6 @@ function sendUserVerse() {
   console.log(input.value());
   poem.userVerse = input.value();
   userInputState = true;
-  drawText();
 
 
 }
@@ -120,7 +123,7 @@ function sendUserVerse() {
 // Description of draw()
 
 function draw() {
-  background(200);
+  background(200,10);
   image(iconUrl, 25, 100);
 
   // template string allows to insert variables values
@@ -139,13 +142,21 @@ function draw() {
 
 
 function drawText() {
+
   for (let i = 0; i < words.length; i++) {
     // RiTa.randomOrdering(words);
-    text(words[i], 50, 50 + i * 20);
-
-
-
+    const spannedWords = createSpan(words[i]);
+    const dw = new DanceSpan(spannedWords, random(600), random(200));
+    dancingWords.push(dw);
+    // text(words[i], 50, 50 + i * 20);
+    for (let i = 0; i < dancingWords.length; i++) {
+      dancingWords[i].brownian();
+    }
   }
+
+
+
+
   // draw the words
   push();
   textFont(`cursive`);
