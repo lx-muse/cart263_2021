@@ -26,9 +26,11 @@ let midsummerPoemData = undefined;
 // variables to split strings
 let mashupPoem;
 let words = "";
+let randomWords = "";
 
 // variables to addVerse
 let input, button, greetings;
+let userInputState = false;
 
 let pictureData = undefined;
 // picture workaround for now.
@@ -37,7 +39,7 @@ let iconUrl;
 
 
 
-// loading JSON list in variables from constant url
+// loading JSON list in variables from constant local files
 function preload() {
   poemData = loadJSON("assets/data/shakespeare_phrases.json");
   midsummerPoemData = loadJSON("assets/data/midsummer.json");
@@ -53,7 +55,6 @@ function preload() {
     "assets/images/icon_07.svg",
     "assets/images/icon_08.svg",
   ]
-  console.log(possibleIcons);
   let pos = floor(random(possibleIcons.lenght));
   iconUrl = loadImage(possibleIcons[pos]);
   console.log(iconUrl);
@@ -78,6 +79,9 @@ function generatePoem() {
   //will select a verse from the midsummer poem
   let randomPuckEnding = random(midsummerPoemData.verses);
   poem.puckEnding = randomPuckEnding;
+
+  console.log(mashupPoem);
+  console.log(words);
 
   poem.icon = iconUrl;
 
@@ -106,9 +110,9 @@ function myInputEvent() {
 function sendUserVerse() {
   console.log(input.value());
   poem.userVerse = input.value();
+  userInputState = true;
+  drawText();
 
-  console.log(mashupPoem);
-  console.log(words);
 
 }
 
@@ -128,26 +132,27 @@ function draw() {
   `;
 
   // seperate each words of the mashupPoem array
-  words = RiTa.tokenize(mashupPoem)
+  words = RiTa.tokenize(mashupPoem);
+  drawText();
+
+}
+
+
+function drawText() {
   for (let i = 0; i < words.length; i++) {
+    // RiTa.randomOrdering(words);
     text(words[i], 50, 50 + i * 20);
+
+
+
   }
-
-
-
   // draw the words
   push();
   textFont(`cursive`);
   textSize(24);
   textAlign(LEFT, TOP);
   fill(0);
-  // text(mashupPoem, 50, 100);
   pop();
-
-
-}
-
-function drawText() {
 
 }
 
