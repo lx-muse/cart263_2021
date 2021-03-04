@@ -11,12 +11,14 @@ class DanceSpan {
     this.x += random(-6, 6);
     this.y += random(-6, 6);
     this.element.position(this.x, this.y);
+    this.angle = this.angle;
   }
 
-  sine(){
-    this.angle += 0.05;
-    this.x += sine(this.angle) * 6;
-    this.y += sine(this.angle) * 6;
+  move(){
+    this.x += sin(this.angle) * 12;
+    this.y += sin(this.angle) * 12;
     this.element.position(this.x, this.y);
+    this.angle += 0.05;
+
   }
 }

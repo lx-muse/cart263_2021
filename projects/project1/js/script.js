@@ -28,7 +28,7 @@ let mashupPoem;
 let words = "";
 let randomWords = "";
 let dancingWords = [];
-let spannedWords ;
+let spannedWords;
 
 // variables to addVerse
 let input, button, greetings;
@@ -70,6 +70,7 @@ function preload() {
 
 function setup() {
   createCanvas(640, 480);
+  background(200, 10);
   generatePoem();
   addVerse();
 }
@@ -115,7 +116,7 @@ function sendUserVerse() {
   console.log(input.value());
   poem.userVerse = input.value();
   userInputState = true;
-
+  console.log(mashupPoem);
 
 }
 
@@ -154,8 +155,7 @@ function drawText() {
   // text(words[i], 50, 50 + i * 20);
   for (let i = 0; i < dancingWords.length; i++) {
     // dancingWords[i].brownian();
-    dancingWords[i].sine();
-
+    dancingWords[i].move();
   }
 
 
