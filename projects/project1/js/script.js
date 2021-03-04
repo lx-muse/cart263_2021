@@ -148,13 +148,15 @@ function drawText() {
     const spannedWords = createSpan(words[i]);
     const dw = new DanceSpan(spannedWords, random(600), random(200));
     dancingWords.push(dw);
-    // text(words[i], 50, 50 + i * 20);
-    for (let i = 0; i < dancingWords.length; i++) {
-      dancingWords[i].brownian();
-    }
+
   }
 
+  // text(words[i], 50, 50 + i * 20);
+  for (let i = 0; i < dancingWords.length; i++) {
+    // dancingWords[i].brownian();
+    dancingWords[i].sine();
 
+  }
 
 
   // draw the words
