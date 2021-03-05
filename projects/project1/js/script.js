@@ -98,12 +98,12 @@ function addVerse() {
 
   input = createInput(`You may contribute a verse!`);
   input.input(myInputEvent);
-  input.position(40, 440);
+  input.position(50, 440);
   input.size(200);
 
 
   button = createButton("join");
-  button.position(input.x + input.width, 440);
+  button.position(input.x - button.width, 440);
   button.mousePressed(sendUserVerse);
   // poem.userVerse = prompt(`You may contribute a verse!`);
 }
@@ -124,7 +124,7 @@ function sendUserVerse() {
 // Description of draw()
 
 function draw() {
-  background(200,10);
+  // background(200, 10);
   image(iconUrl, 25, 100);
 
   // template string allows to insert variables values
@@ -154,7 +154,8 @@ function drawText() {
 
   // text(words[i], 50, 50 + i * 20);
   for (let i = 0; i < dancingWords.length; i++) {
-    // dancingWords[i].brownian();
+    // using both animations creates a nice Tempest (like M.Shakespeare, right)
+    dancingWords[i].brownian();
     dancingWords[i].move();
   }
 
