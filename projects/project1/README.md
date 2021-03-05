@@ -1,7 +1,3 @@
-# cart263_2021
-
-/**
-
 Night at the Movie - Dead Poets Society mashup
 Marie-Christine Lariviere
 
@@ -31,7 +27,3 @@ Special shout out to Fantasia 1938 - The sorcerer's apprentice
 Dead Poets Society - 1989
 That the powerful play goes on, yet you may contribute a verse
 - rip Robin Williams
-
-
-
-**/
