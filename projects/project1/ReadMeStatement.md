@@ -1,4 +1,4 @@
-/*****************
+/**
 
 Night at the Movie - Dead Poets Society mashup
 Marie-Christine Lariviere
@@ -32,4 +32,4 @@ That the powerful play goes on, yet you may contribute a verse
 
 
 
-************/
+**/
