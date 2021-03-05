@@ -34,12 +34,9 @@ let spannedWords;
 let input, button, greetings;
 let userInputState = false;
 
-let pictureData = undefined;
-// picture workaround for now.
-let possibleIcons;
-let iconUrl;
+// let iconUrl;
 
-// variables for animation
+// variables for animation?
 let t = 0;
 
 
@@ -48,20 +45,7 @@ function preload() {
   poemData = loadJSON("assets/data/shakespeare_phrases.json");
   midsummerPoemData = loadJSON("assets/data/midsummer.json");
 
-  // fill an array with images
-  let possibleIcons = [
-    "assets/images/icon_01.svg",
-    "assets/images/icon_02.svg",
-    "assets/images/icon_03.svg",
-    "assets/images/icon_04.svg",
-    "assets/images/icon_05.svg",
-    "assets/images/icon_06.svg",
-    "assets/images/icon_07.svg",
-    "assets/images/icon_08.svg",
-  ]
-  let pos = floor(random(possibleIcons.lenght));
-  iconUrl = loadImage(possibleIcons[pos]);
-  console.log(iconUrl);
+  // iconUrl = loadImage();
 }
 
 
@@ -88,7 +72,7 @@ function generatePoem() {
   console.log(mashupPoem);
   console.log(words);
 
-  poem.icon = iconUrl;
+  // poem.icon = iconUrl;
 
 }
 
@@ -124,8 +108,8 @@ function sendUserVerse() {
 // Description of draw()
 
 function draw() {
-  // background(200, 10);
-  image(iconUrl, 25, 100);
+  background(222, 10);
+  // image(iconUrl, 25, 100);
 
   // template string allows to insert variables values
   // join 3 sentences in a rita string
@@ -169,12 +153,3 @@ function drawText() {
   pop();
 
 }
-
-// reset poem
-function keyPressed() {
-  if (key === "c") {
-    localStorage.removeItem(`spy-profile-data`);
-    console.log("clear");
-  }
-}
-// remember sessionStorage

@@ -9,7 +9,7 @@ class DanceSpan {
 
   brownian() {
     this.x += random(-6, 10);
-    this.y += random(-6, 20);
+    this.y += random(-6, 10);
     this.element.position(this.x, this.y);
     this.angle += 0.5;
   }
@@ -19,7 +19,7 @@ class DanceSpan {
     this.x += sin(this.angle);
     this.y += sin(this.angle);
     this.element.position(this.x, this.y);
-    this.angle += 0.5;
+    this.angle += 500;
 
   }
 }
