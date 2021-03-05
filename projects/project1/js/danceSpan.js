@@ -8,18 +8,18 @@ class DanceSpan {
   }
 
   brownian() {
-    this.x += random(-6, 10);
-    this.y += random(-6, 10);
+    this.x += random(-6, 6);
+    this.y += random(-2, 10);
     this.element.position(this.x, this.y);
     this.angle += 0.5;
   }
 
   move() {
     // this.x += sin(this.angle) * 6;
-    this.x += sin(this.angle);
-    this.y += sin(this.angle);
+    this.x += sin(this.angle) * 6;
+    this.y += sin(this.angle) * 6;
     this.element.position(this.x, this.y);
-    this.angle += 500;
+    this.angle += 5;
 
   }
 }

@@ -44,14 +44,12 @@ let t = 0;
 function preload() {
   poemData = loadJSON("assets/data/shakespeare_phrases.json");
   midsummerPoemData = loadJSON("assets/data/midsummer.json");
-
   // iconUrl = loadImage();
 }
 
 
 
-// Setup Prepares the texts files for processing
-
+// Setup prepares the texts files for processing
 function setup() {
   createCanvas(640, 480);
   background(200, 10);
@@ -82,12 +80,12 @@ function addVerse() {
 
   input = createInput(`You may contribute a verse!`);
   input.input(myInputEvent);
-  input.position(50, 440);
+  input.position(50, 50);
   input.size(200);
 
 
   button = createButton("join");
-  button.position(input.x - button.width, 440);
+  button.position(input.x - button.width, 50);
   button.mousePressed(sendUserVerse);
   // poem.userVerse = prompt(`You may contribute a verse!`);
 }
