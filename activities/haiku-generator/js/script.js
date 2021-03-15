@@ -43,8 +43,34 @@ line2P.addEventListener(`click`, lineClicked);
 line3P.addEventListener(`click`, lineClicked);
 
 function lineClicked(event){
-  setNewLine(event.target);
+  fadeOut(event.target, 1);
+  // setNewLine(event.target);
 }
+
+function fadeOut(element, opacity){
+  opacity -= 0.01;
+  element.style[`opacity`] = opacity;
+  if (opacity > 0){
+    requestAnimationFrame(function(){
+      fadeOut(element, opacity);
+    });
+  }
+  else {
+setNewLine(element);
+fadeIn(element, 0);
+ }
+}
+
+function fadeIn(element, opacity){
+  opacity += 0.01;
+  element.style[`opacity`] = opacity;
+  if(opacity < 1){
+    requestAnimationFrame(function(){
+      fadeOut(element, opacity);
+    });
+  }
+}
+
 
 function setNewLine(element) {
   if(element === line1P || element === line3P){
