@@ -12,7 +12,7 @@ secrets become revealed!
 // The chance a span will be revealed per update
 const REVEAL_PROBABILITY = 0.1;
 // How often to update the spans (potentially revealing them)
-const UPDATE_FREQUENCY = 500;
+const UPDATE_FREQUENCY = 2000;
 
 // A place to store the jQuery selection of all secrets
 let $secrets;
