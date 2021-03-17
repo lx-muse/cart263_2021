@@ -38,6 +38,7 @@ thus blacking it out
 function redact() {
   $(this).removeClass(`revealed`);
   $(this).addClass(`redacted`);
+  console.log($secrets.length);
 }
 
 /**
@@ -61,3 +62,11 @@ function attemptReveal() {
     $(this).addClass(`revealed`);
   }
 }
+
+$(function(){
+    $("button").click(function(){
+
+        alert("click");
+
+    });
+});
