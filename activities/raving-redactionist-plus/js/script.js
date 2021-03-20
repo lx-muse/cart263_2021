@@ -16,6 +16,7 @@ const UPDATE_FREQUENCY = 2000;
 
 // A place to store the jQuery selection of all secrets
 let $secrets;
+let $redactedSecrets;
 
 setup();
 
@@ -25,6 +26,8 @@ Sets the click handler and starts the time loop
 function setup() {
   // Save the selection of all secrets (since we do stuff to them multiple times)
   $secrets = $(`.secret`);
+  // and save the selection on redacted secrets as the game go
+  $redactedSecrets = $(`.redacted`);
   // Set a click handler on the secrets (so we know when they`re clicked)
   $secrets.on(`click`, redact);
   // Set an interval of 500 milliseconds to attempt the revelation of secrets
@@ -39,6 +42,7 @@ function redact() {
   $(this).removeClass(`revealed`);
   $(this).addClass(`redacted`);
   console.log($secrets.length);
+  console.log($redactedSecrets.lenght);
 }
 
 /**
@@ -63,10 +67,16 @@ function attemptReveal() {
   }
 }
 
-$(function(){
-    $("button").click(function(){
-
-        alert("click");
-
+// the apply filter button should remove each redacted string
+// the send button is a fake publish button
+$(function() {
+  $("#Send").on('click', function(event){
+    alert("sending...");
+  });
+  // an IF statement with the $redactedSecrets === $secrets.lenght to apply filters
+  // now it just works all the time
+    $("#Filter").on(`click`, function(event) {
+      $secrets.remove();
     });
+
 });
