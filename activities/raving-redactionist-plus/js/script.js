@@ -27,7 +27,8 @@ function setup() {
   // Save the selection of all secrets (since we do stuff to them multiple times)
   $secrets = $(`.secret`);
   // and save the selection on redacted secrets as the game go
-  $redactedSecrets = $(`.redacted`);
+  // UNDEFINED!
+  $redactedSecrets = $(`.secret redacted`);
   // Set a click handler on the secrets (so we know when they`re clicked)
   $secrets.on(`click`, redact);
   // Set an interval of 500 milliseconds to attempt the revelation of secrets
@@ -73,10 +74,13 @@ $(function() {
   $("#Send").on('click', function(event){
     alert("sending...");
   });
+   // this button works all the time
   // an IF statement with the $redactedSecrets === $secrets.lenght to apply filters
-  // now it just works all the time
     $("#Filter").on(`click`, function(event) {
       $secrets.remove();
     });
-
 });
+// toggle class example
+// https://jsfiddle.net/boilerplate/jquery
+
+// .animate()
