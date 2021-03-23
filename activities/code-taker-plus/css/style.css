@@ -12,12 +12,16 @@ html {
   background: white;
 }
 
+#poem {
+  font-size: 1rem;
 }
 
-#id {
-
+#answer {
+  height: 2rem;
+  width: 13rem;
+  border: 1px dashed black;
 }
 
-.class {
-
+.found {
+  color: purple;
 }

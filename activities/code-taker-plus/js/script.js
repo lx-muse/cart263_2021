@@ -1,12 +1,12 @@
 /*****************
 
-Title of Project
-Author Name
+Code Taker
+MC Lariviere, cart 263
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
-
+game stuff
 ******************/
-
-
 "use strict";
+
+$(".secret").on('mouseover', function(event){
+  $(this).addClass('found', 500);
+});
