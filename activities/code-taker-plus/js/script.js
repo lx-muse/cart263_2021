@@ -20,7 +20,7 @@ $('#answer').droppable({
     let letter = ui.draggable.text();
     $(this).append(letter);
     // refers to the ui object (letters).draggable method
-    ui.draggable.dragabble(`disable`);
-    ui.dragabble.removeClass(`found`);
+    ui.draggable.draggable(`disable`);
+    ui.draggable.removeClass(`found`);
   }
 });
