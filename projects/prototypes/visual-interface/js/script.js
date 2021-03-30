@@ -87,9 +87,10 @@ function generateButtons() {
     });
     //add the button to the html
     $keyboardContainer.append(button)
+    console.log(button);
   }
   // MCs mod start
-  console.log(button.text);
+
   $
 }
 
