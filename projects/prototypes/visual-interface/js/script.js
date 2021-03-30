@@ -3,11 +3,20 @@ cart263-winter2021
 Prototype for P2
 MC Larivière
 
-This is a program linking jQueryinterfaces with p5
-I aim to replace p5 with a generative software for VJ
-hydra : https://hydra.ojack.xyz/?sketch_id=marianne_0
-nannou : https://nannou.cc/ 
+This is a program linking jQuery interfaces with p5, and
+hydra : ojack Experimental package for running hydra in atom.
 
+Also includes p5.js, support for OSC channels, and for live coding with javascript in general.
+https://hydra.ojack.xyz/?sketch_id=marianne_0
+https://github.com/ojack/atom-hydra
+ojack as an artist: https://c0d3-p03try.neocities.org/
+
+Template mod with Dana help:
+`as you can see, it's not important that the Circles are in p5.
+the important part is that we are communicating with a JavaScript class`
+
+Pippin's advice on hydra
+leverage functions like sin(), cos(), tan(), noise() that produce patterns over time as you vary a variable (like the angle or timestep). Another is using iteration to draw many slightly varied basic shapes (e.g. a for-loop that draws a bunch of lines, each at a slightly diifferent angle)
 ******************/
 
 "use strict";
@@ -31,19 +40,18 @@ function setup() {
   generateButtons();
 
   //generate the circles;
-
-  // generateCircles();
+  generateCircles();
 }
 
 function draw() {
   background(255);
 
-//   //display and move the 10 circles
-//   for(let i = 0; i < circles.length; i++){
-//     let circle = circles[i];
-//     circle.move();
-//     circle.display();
-//   }
+  //display and move the 10 circles
+  for(let i = 0; i < circles.length; i++){
+    let circle = circles[i];
+    circle.move();
+    circle.display();
+  }
 }
 
 function generateButtons(){
