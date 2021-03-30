@@ -1,0 +1,17 @@
+/*********************************************
+Raving Redactionist CSS from Pippin's github
+modified by mc on activity 6
+with https://cssgenerator.org and w3school
+**********************************************/
+/* wraps paragraph on page resize */
+html {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  word-wrap: break-word;
+  background: white;
+}
+
+#id {}
+
+.class {}
