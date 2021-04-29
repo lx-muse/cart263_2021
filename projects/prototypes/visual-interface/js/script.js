@@ -1,15 +1,9 @@
 /*****************
 cart263-winter2021
-Prototype for P2
+Project 2
 MC Larivière
 
-This is a program linking jQuery interfaces with p5, and
-hydra : ojack Experimental package for running hydra in atom.
-
-Also includes p5.js, support for OSC channels, and for live coding with javascript in general.
-https://hydra.ojack.xyz/?sketch_id=marianne_0
-+ package in settings https://github.com/ojack/hydra-examples
-ojack as an artist: https://c0d3-p03try.neocities.org/
+This is a program linking jQuery interfaces with p5.js and ocsillators
 
 Template mod with Dana help:
 `as you can see, it's not important that the Circles are in p5.
@@ -28,6 +22,8 @@ const NUM_BUTTONS = 10;
 // variables of visuals
 let circles = [];
 
+// variable for sound c-minor
+let notes = [`C`,`D`, `Eb`, `F`, `G`,`Ab`, `Bb`,`C` ];
 
 function setup() {
   //creates p5 canvas
@@ -94,15 +90,14 @@ function generateButtons() {
     $keyboardContainer.append(button)
     console.log(button);
   }
-  // MCs mod start
 
-  $
 }
 
 //creates 10 circles from the Circle class
 function generateCircles() {
+  let note = random(notes);
   for (let i = 0; i < NUM_CIRCLES; i++) {
-    let newCircle = new Circle()
+    let newCircle = new Circle(note);
     circles.push(newCircle);
   }
 }
