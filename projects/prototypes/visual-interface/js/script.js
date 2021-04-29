@@ -41,6 +41,9 @@ function setup() {
 
   //generate the circles;
   generateCircles();
+
+  //Polite Audio
+  userStartAudio();
 }
 
 function draw() {
@@ -56,6 +59,7 @@ function draw() {
 }
 
 function generateButtons() {
+  //Example from Dana
   //select the keyboard container
   let $keyboardContainer = $('#keyboardContainer');
   console.log($keyboardContainer);
@@ -101,4 +105,8 @@ function generateCircles() {
     let newCircle = new Circle()
     circles.push(newCircle);
   }
+}
+
+function userStartAudio() {
+
 }

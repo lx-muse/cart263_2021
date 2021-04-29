@@ -13,11 +13,26 @@ class Circle {
       g: random (200, 255),
       b: random (200, 255)
     };
+
+    //Oscillator
+    this.oscillator = new p5.Oscillator();
+    this.nearFreq = 220;
+    this.farFreq = 440;
+    this.oscillator.amp(0.1);
+    this.oscillator.start();
+
   }
 
   move() {
     this.x += this.vx;
     this.y += this.vy;
+
+    //update frequency
+    let d = dist(this.x, this.y, width/2, height/2);
+    let maxDist = dist(0,0, width/2, height/2);
+    let newFreq = map(d, 0, maxDist, this.nearFreq, this.farFreq);
+    this.oscillator.freq(newFreq);
+
   }
 
   bounce(){
