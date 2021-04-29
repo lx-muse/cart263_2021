@@ -19,15 +19,19 @@ leverage functions like sin(), cos(), tan(), noise() that produce patterns over 
 const NUM_CIRCLES = 10;
 const NUM_BUTTONS = 10;
 
-// variables of visuals
+// variables of musical Circles
 let circles = [];
+
+//variables for waves
+const WAVE_RESOLUTION = 1;
+let waves = [];
 
 // variable for sound c-minor
 let notes = [`C`,`D`, `Eb`, `F`, `G`,`Ab`, `Bb`,`C` ];
 
 function setup() {
   //creates p5 canvas
-  let myCanvas = createCanvas(windowWidth, windowHeight);
+  let myCanvas = createCanvas(1000, 1000);
   //places the canvas in a <div>
   //(so you can move the div around if you wish)
   myCanvas.parent("canvasContainer");
@@ -40,6 +44,15 @@ function setup() {
 
   //Polite Audio
   userStartAudio();
+
+  //wavy lines
+  let y = 150;
+  while (y < height) {
+    let wave = createWave(0, y);
+    waves.push(wave);
+    y += 75;
+  }
+
 }
 
 function draw() {
@@ -52,6 +65,10 @@ function draw() {
     circle.bounce();
     circle.display();
   }
+  //wavy canvas update
+  for (let i = 0; i < waves.length; i++) {
+     updateWave(waves[i]);
+   }
 }
 
 function generateButtons() {
@@ -102,6 +119,61 @@ function generateCircles() {
   }
 }
 
+//seem to create an error if I don't have it!
 function userStartAudio() {
 
+}
+
+
+//Pippin's example from here
+function createWave(x, y) {
+  return {
+    x: x,
+    y: y,
+    amplitude: 10,
+    frequency: random(0.01, 0.025),
+    bobAngle: random(TWO_PI),
+    bobAmount: random(2, 10),
+    flow: random(0, TWO_PI),
+    shade: random(50, 200)
+  }
+}
+
+function updateWave(wave) {
+  moveWave(wave);
+  displayWave(wave);
+}
+
+function moveWave(wave) {
+  wave.bobAngle += 0.05;
+  wave.flow += 0.09;
+}
+
+function displayWave(wave) {
+  push();
+  // Coloring
+  noStroke();
+  fill(wave.shade, 100);
+  // Draw the wave with vertices
+  beginShape();
+  // One at the far left and the wave's height
+  vertex(0, wave.y);
+  let flow = wave.flow;
+  // Loop through every horizontal vertex of the wave's shape (across the canvas)
+  for (let x = 0; x < width; x += WAVE_RESOLUTION) {
+    // Genereate a y for this vertex
+    // wave.y is the base level y position of the overall wave
+    // sin(wave.bobAngle) * wave.bobAmount makes the wave bob up and down over time
+    // sin(flow) * wave.amplitude gives us the basic sinewave form
+    let y = wave.y + sin(wave.bobAngle) * wave.bobAmount + sin(flow) * wave.amplitude;
+    // Draw the vertex
+    vertex(x, y);
+    // Increase the flow so that we continue along the sinwave form
+    flow += wave.frequency;
+  }
+  // Draw final vertices at the the bottom right and bottom left
+  vertex(width, height);
+  vertex(0, height);
+  endShape();
+  pop();
 }

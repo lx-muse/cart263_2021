@@ -4,7 +4,7 @@
     constructor() {
       this.x = random(0, width);
       this.y = random(0, height);
-      this.speed = 3;
+      this.speed = 1;
       this.vx = random(-this.speed, this.speed);
       this.vy = random(-this.speed, this.speed);
       this.size = 0;
