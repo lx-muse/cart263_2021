@@ -31,7 +31,7 @@ let circles = [];
 
 function setup() {
   //creates p5 canvas
-  let myCanvas = createCanvas(windowWidth, windowHeight / 2);
+  let myCanvas = createCanvas(windowWidth, windowHeight);
   //places the canvas in a <div>
   //(so you can move the div around if you wish)
   myCanvas.parent("canvasContainer");
@@ -50,6 +50,7 @@ function draw() {
   for (let i = 0; i < circles.length; i++) {
     let circle = circles[i];
     circle.move();
+    circle.bounce();
     circle.display();
   }
 }
