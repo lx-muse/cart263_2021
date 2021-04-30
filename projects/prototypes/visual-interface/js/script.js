@@ -131,10 +131,15 @@ function userStartAudio() {
 }
 
 //drawing a Boat
+//x, y, parameter won't pass, neither my move function though
 function generateBoat(){
-  let boat = new Boat(300, 600, size);
+  let angle = random (-2, 2);
+  let boat = new Boat(400, 900, angle);
   boat.move();
   boat.display();
+
+  // $boatContainer.append(boat);
+  console.log(boat);
 
 }
 
