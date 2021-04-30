@@ -16,9 +16,9 @@
 
       //Oscillator
       this.oscillator = new p5.Oscillator();
-      this.nearFreq = 220;
-      this.farFreq = 440;
-      this.oscillator.amp(0.01);
+      this.nearFreq = 120;
+      this.farFreq = 220;
+      this.oscillator.amp(0.1);
       this.oscillator.start();
 
       // Synth with error

@@ -16,8 +16,8 @@ leverage functions like sin(), cos(), tan(), noise() that produce patterns over 
 "use strict";
 
 // variables for interface
-const NUM_CIRCLES = 10;
-const NUM_BUTTONS = 10;
+const NUM_CIRCLES = 5;
+const NUM_BUTTONS = 5;
 
 // variables of musical Circles
 let circles = [];
@@ -46,7 +46,7 @@ function setup() {
   userStartAudio();
 
   //wavy lines
-  let y = 150;
+  let y = -120;
   while (y < height) {
     let wave = createWave(0, y);
     waves.push(wave);
@@ -127,8 +127,7 @@ function userStartAudio() {
 
 //Pippin's example from here
 // I wanted to switch from functions to OOP
-// I understand this Example
-//https://natureofcode.com/book/chapter-3-oscillation/
+// I understand this https://natureofcode.com/book/chapter-3-oscillation/
 function createWave(x, y) {
   return {
     x: x,
@@ -156,7 +155,7 @@ function displayWave(wave) {
   push();
   // Coloring
   noStroke();
-  fill(0, 0, wave.b, 100);
+  fill(0, 0, wave.b, 50);
   // Draw the wave with vertices
   beginShape();
   // One at the far left and the wave's height
