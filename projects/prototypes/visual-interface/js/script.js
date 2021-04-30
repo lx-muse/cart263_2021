@@ -26,6 +26,9 @@ let circles = [];
 const WAVE_RESOLUTION = 1;
 let waves = [];
 
+//variable for Boat
+let boat;
+
 // variable for sound c-minor
 let notes = [`C`, `D`, `Eb`, `F`, `G`, `Ab`, `Bb`, `C`];
 
@@ -53,6 +56,7 @@ function setup() {
     y += 75;
   }
 
+
 }
 
 function draw() {
@@ -69,6 +73,8 @@ function draw() {
   for (let i = 0; i < waves.length; i++) {
     updateWave(waves[i]);
   }
+  //draw a boat once
+  generateBoat();
 }
 
 function generateButtons() {
@@ -124,6 +130,14 @@ function userStartAudio() {
 
 }
 
+//drawing a Boat
+function generateBoat(){
+  let boat = new Boat(300, 600, size);
+  boat.move();
+  boat.display();
+
+}
+
 
 //Pippin's example from here
 // I wanted to switch from functions to OOP
@@ -145,8 +159,8 @@ function createWave(x, y) {
     waveAmp: 0.1,
 
   };
-    console.log(waveOscillator);
-    waveOscillator.start();
+    // console.log(waveOscillator);
+    // waveOscillator.start();
 
 
 }
