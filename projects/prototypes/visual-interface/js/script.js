@@ -137,8 +137,18 @@ function createWave(x, y) {
     bobAngle: random(TWO_PI),
     bobAmount: random(2, 10),
     flow: random(0, TWO_PI),
-    b: random(50, 200)
-  }
+    b: random(50, 200),
+    //Oscillator
+    waveOscillator: new p5.Oscillator(),
+    waveNearFreq: 120,
+    waveFarFreq: 220,
+    waveAmp: 0.1,
+
+  };
+    console.log(waveOscillator);
+    waveOscillator.start();
+
+
 }
 
 function updateWave(wave) {
