@@ -79,7 +79,7 @@ function generateButtons() {
 
   for (let i = 0; i < NUM_BUTTONS; i++) {
     //create a button with a text inside
-    let button = $('<button></button>').text(`Button: ${i}`);
+    let button = $('<button></button>').text(`Atom: ${i}`);
     //set the ID to the index number (could be useful for something else)
     button.attr('id', i);
     //turn it into a Jquety UI button
