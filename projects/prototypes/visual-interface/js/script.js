@@ -27,7 +27,7 @@ const WAVE_RESOLUTION = 1;
 let waves = [];
 
 // variable for sound c-minor
-let notes = [`C`,`D`, `Eb`, `F`, `G`,`Ab`, `Bb`,`C` ];
+let notes = [`C`, `D`, `Eb`, `F`, `G`, `Ab`, `Bb`, `C`];
 
 function setup() {
   //creates p5 canvas
@@ -67,8 +67,8 @@ function draw() {
   }
   //wavy canvas update
   for (let i = 0; i < waves.length; i++) {
-     updateWave(waves[i]);
-   }
+    updateWave(waves[i]);
+  }
 }
 
 function generateButtons() {
@@ -128,7 +128,7 @@ function userStartAudio() {
 //Pippin's example from here
 // I wanted to switch from functions to OOP
 // I understand this Example
-//https://natureofcode.com/book/chapter-3-oscillation/ 
+//https://natureofcode.com/book/chapter-3-oscillation/
 function createWave(x, y) {
   return {
     x: x,
@@ -156,7 +156,7 @@ function displayWave(wave) {
   push();
   // Coloring
   noStroke();
-  fill(0,0, wave.b, 100);
+  fill(0, 0, wave.b, 100);
   // Draw the wave with vertices
   beginShape();
   // One at the far left and the wave's height
