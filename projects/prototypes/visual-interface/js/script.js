@@ -126,6 +126,9 @@ function userStartAudio() {
 
 
 //Pippin's example from here
+// I wanted to switch from functions to OOP
+// I understand this Example
+//https://natureofcode.com/book/chapter-3-oscillation/ 
 function createWave(x, y) {
   return {
     x: x,
@@ -135,7 +138,7 @@ function createWave(x, y) {
     bobAngle: random(TWO_PI),
     bobAmount: random(2, 10),
     flow: random(0, TWO_PI),
-    shade: random(50, 200)
+    b: random(50, 200)
   }
 }
 
@@ -153,7 +156,7 @@ function displayWave(wave) {
   push();
   // Coloring
   noStroke();
-  fill(wave.shade, 100);
+  fill(0,0, wave.b, 100);
   // Draw the wave with vertices
   beginShape();
   // One at the far left and the wave's height
